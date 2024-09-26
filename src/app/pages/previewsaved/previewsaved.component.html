@@ -1,0 +1,47 @@
+<div class="container mx-auto p-8">
+    <h2 class="text-2xl font-bold mb-6">Preview Form: {{form.formName}}</h2>
+
+     
+    <div *ngFor="let question of questions" class="mb-6 p-6 bg-white shadow-md rounded">
+      <!-- Display Question Text -->
+      <h4 class="text-lg font-semibold mb-4">{{ question.questionText }}</h4>
+  
+      <!-- Radio Button Question Type -->
+      <div *ngIf="question.questionType === 'radio'">
+        <div *ngFor="let answer of question.answers" class="flex items-center mb-2">
+          <input type="radio" name="radio-{{ question.questionId }}" class="mr-2">
+          <label>{{ answer.answerText }}</label>
+        </div>
+      </div>
+  
+      <!-- Checkbox Question Type -->
+      <div *ngIf="question.questionType === 'checkbox'">
+        <div *ngFor="let answer of question.answers" class="flex items-center mb-2">
+          <input type="checkbox" name="checkbox-{{ question.questionId }}" class="mr-2">
+          <label>{{ answer.answerText }}</label>
+        </div>
+      </div>
+  
+      <!-- Dropdown Question Type -->
+      <div *ngIf="question.questionType === 'dropdown'">
+        <select class="w-full p-2 border border-gray-300 rounded">
+          <option *ngFor="let answer of question.answers">{{ answer.answerText }}</option>
+        </select>
+      </div>
+  
+      <!-- Text Question Type -->
+      <div *ngIf="question.questionType === 'text'">
+        <input type="text" class="w-full p-2 border border-gray-300 rounded" placeholder="Your answer here">
+      </div>
+
+
+    </div>
+
+    <button routerLink="/home" class="bg-green-500 text-white py-2 px-4 rounded">
+      Back
+    </button>
+
+    <!-- <button onclick="submit()">Save</button> -->
+    
+  </div>
+  
