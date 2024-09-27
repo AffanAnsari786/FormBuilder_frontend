@@ -15,8 +15,6 @@ export class PreviewsavedComponent implements OnInit{
 
   form!:any;
   questions: any[] = [];
-  
-  // questions: PreviewAllQuestion[]= [];
   constructor(private router: Router,private route: ActivatedRoute,
     private formServiceService : FormServiceService
   ) {}

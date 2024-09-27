@@ -25,6 +25,13 @@ export class FormServiceService {
     
     return this.http.post(`${this.apiUrl}`, form);
   }
+  
+  copyForm(formId : any){
+    console.log(formId);
+    
+    return this.http.post(`${this.apiUrl}/copy`, formId);
+
+  }
   getForms(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}`);
   }

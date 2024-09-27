@@ -3,14 +3,15 @@ import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FormServiceService } from '../../services/form-service.service';
 import { CommonModule } from '@angular/common';
-import { Answer } from './../../shared/models/answer';
 import { PreviewAllQuestion } from '../../shared/models/preview';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [RouterLink, FormsModule, CommonModule],
-templateUrl: './form.component.html',
+  imports: [RouterLink, FormsModule, CommonModule, MatMenuModule, MatIcon],
+  templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
@@ -38,6 +39,25 @@ export class FormComponent {
       // Implement editing logic here
     }
 
+    editForm(question: any, id: number){
+
+      
+
+    }
+
+    copyForm(question: any, id: number){
+      
+      this.addedQuestions.push(question);
+      this.currentQuestionNumber++;
+      this.formDataService.setQuestions(this.addedQuestions)
+      this.formDataService.updateQuestions(this.addedQuestions);
+
+      this.questionText = '';
+      this.textTypeText = ''
+      this.questionOptions=[];
+      this.questionOptions.push('')
+
+    }
     
 
     previewQuestions() {
@@ -48,7 +68,7 @@ export class FormComponent {
     goToSavedForms(){
       this.router.navigate(['/saved-forms']);
     }
- 
+   
 
   addQuestion() {
     // this.modal =true
@@ -90,6 +110,10 @@ export class FormComponent {
       }
 }
 
+deletequestion(index : number){
+  this.addedQuestions.splice(index, 1)
+}
+
   handleQuestionTypeChange(){
     if (this.selectedQuestionType) {
       this.isOptionsRequired = this.selectedQuestionType !== 'text';
@@ -100,27 +124,6 @@ export class FormComponent {
   }
 
 
-  // saveForm() {
-  //   console.log("saveform function we have reached")
-  //   const form = {
-  //     formName: 'Sample Form',
-  //     questions: this.questions.map(q => ({
-  //       questionType: q.questionType,
-  //       questionText: q.question,
-  //       answerOptions: q.answers.map(a => ({
-  //         answerText: a.answer
-  //       }))
-  //     }))
-  //   };
-  //   console.log(this.questions);
-  //   alert("Form saved successfully")
-  //   this.router.navigate(['/home']);
-  //   this.formDataService.saveForm(form).subscribe(
-  //     response => console.log('Form saved successfully', response),
-  //     error => console.error('Error saving form', error)
-  //   );
-  // }
-  
   addOption() {
     this.questionOptions.push(''); // Add a new empty option
     // console.log(this.questionOptions.length);

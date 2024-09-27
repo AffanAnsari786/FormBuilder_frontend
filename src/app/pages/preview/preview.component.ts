@@ -26,6 +26,10 @@ export class PreviewComponent implements OnInit {
     this.getAllQuestions();
   }
 
+  gotoHome(){   
+    this.router.navigate(['/form'])
+  }
+
   getAllQuestions() {
     this.formServiceService.questions$.subscribe(questions => {
       this.questions = questions;
@@ -41,39 +45,6 @@ export class PreviewComponent implements OnInit {
   closeFormNameModal() {
     this.isFormNameModalOpen = false;
   }
-
-  // Submit the form name and save the form
-  // submitForm() {
-  //   if (this.formName1.trim()) {
-  //     const form = {
-  //       formName: this.formName1,
-  //       questions: this.questions.map(q => ({
-  //         questionType: q.questionType,
-  //         questionText: q.question,
-  //         answerOptions: q.answers.map(a => ({
-  //           answerText: a.answer
-  //         }))
-  //       }))
-  //     };
-      
-  //     // Call the save API
-  //     this.formServiceService.saveForm(form).subscribe(
-  //       response => {
-  //         console.log('Form saved successfully', response);
-  //         this.closeFormNameModal();  // Close modal after successful save
-  //         this.router.navigate(['/home']);  // Navigate to home
-  //         alert('Form saved successfully');
-  //       },
-  //       error => {
-  //         console.error('Error saving form', error);
-  //       }
-  //     );
-  //   } else {
-  //     alert('Please enter a valid form name.');
-  //   }
-  // }
-
-
 
   saveForm() {
     console.log("saveform function we have reached")

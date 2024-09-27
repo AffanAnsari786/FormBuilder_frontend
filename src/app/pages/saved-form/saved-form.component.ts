@@ -38,10 +38,10 @@ export class SavedFormComponent implements OnInit {
   copyForm(form: Forms) {
     console.log(form.questions);
 
-    form.formId = 0;
-    form.formName = `Copy of  ${form.formName}`;
+    // form.formId = 0;
+    // form.formName = `Copy of  ${form.formName}`;
 
-    this.formServiceService.saveForm(form).subscribe(
+    this.formServiceService.copyForm(form.formId).subscribe(
       (res) => {
         console.log('Form copied successfully');
         this.getForms();
